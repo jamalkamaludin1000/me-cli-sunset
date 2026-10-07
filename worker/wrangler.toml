@@ -69,7 +69,7 @@ vars = { ENVIRONMENT = "production" }
 [[env.production.d1_databases]]
 binding = "DB"
 database_name = "webui-xl"
-database_id = "b16350cf-1dc8-48ff-8a53-affb7346d7d6"
+database_id = "18fbd5bb-0652-475d-ab54-16d18bb9dbd6"
 migrations_dir = "migrations"
 
 [[env.production.r2_buckets]]
