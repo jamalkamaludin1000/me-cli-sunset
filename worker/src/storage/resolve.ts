@@ -10,6 +10,7 @@ export function resolveStorage(env: Env): StorageBackend {
     return new D1R2Backend({
       DB: env.DB,
       DATA: env.DATA,
+      ASSETS: env.ASSETS,
       STORAGE_ENCRYPTION_KEY: env.STORAGE_ENCRYPTION_KEY,
       SESSION_SECRET: env.SESSION_SECRET,
     });
