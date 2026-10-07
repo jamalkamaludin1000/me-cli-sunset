@@ -12,6 +12,7 @@ export interface WebUIUser {
 export interface StorageBindings {
   DB: D1Database;
   DATA?: R2Bucket;
+  ASSETS?: Fetcher;
   STORAGE_ENCRYPTION_KEY?: string;
   SESSION_SECRET?: string;
 }
