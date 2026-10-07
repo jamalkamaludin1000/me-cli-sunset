@@ -183,17 +183,37 @@ export class D1R2Backend implements StorageBackend {
   }
 
   private async readBlobBytes(r2Path: string): Promise<Uint8Array | null> {
-    if (this.env.DATA) {
-      const obj = await this.env.DATA.get(r2Path);
-      if (!obj) return null;
-      return new Uint8Array(await obj.arrayBuffer());
-    }
+  // Hot data dibaca dari file repository yang dipasang sebagai Worker Assets.
+  if (r2Path === "shared/hot.json" || r2Path === "shared/hot2.json") {
+    if (this.env.ASSETS) {
+      const url = new URL(`https://assets.local/${r2Path}`);
 
-    const row = await this.env.DB.prepare("SELECT value FROM storage_meta WHERE key = ?")
-      .bind(blobMetaKey(r2Path))
-      .first<{ value: ArrayBuffer }>();
-    if (!row?.value) return null;
-    return new Uint8Array(row.value);
+      const response = await this.env.ASSETS.fetch(
+        new Request(url.toString()),
+      );
+
+      if (response.ok) {
+        return new Uint8Array(await response.arrayBuffer());
+      }
+    }
+  }
+
+  // Data lainnya tetap menggunakan R2.
+  if (this.env.DATA) {
+    const obj = await this.env.DATA.get(r2Path);
+    if (!obj) return null;
+    return new Uint8Array(await obj.arrayBuffer());
+  }
+
+  const row = await this.env.DB.prepare(
+    "SELECT value FROM storage_meta WHERE key = ?",
+  )
+    .bind(blobMetaKey(r2Path))
+    .first<{ value: ArrayBuffer }>();
+
+  if (!row?.value) return null;
+
+  return new Uint8Array(row.value);
   }
 
   private async writeBlobBytes(r2Path: string, stored: Uint8Array): Promise<void> {
