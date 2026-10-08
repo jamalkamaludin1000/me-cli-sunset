@@ -1,3 +1,9 @@
+/*
+ * WEBUI-XL — PREMIUM FINAL CUSTOM CSS
+ * Based on the supplied custom.css.
+ * UI ONLY — no backend, API, JS, D1, R2, OAuth, or Telegram changes.
+ */
+
 /* ========================================================================
    NEUMORPHIC DARK — inspired by mhmdsairi.my.id
    Background: #0f172a (slate-900), shadows: #060a12 (dark) / #182442 (light)
@@ -627,8 +633,6 @@ input:checked + .theme-card {
 /* --- Scrollbar --- */
 
 /* Hide scrollbar strictly on sidebar */
-  display: none;
-}
 #sidebar {
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
@@ -1024,16 +1028,12 @@ pre {
   border-style: solid;
 }
 /* --- Hide sidebar scrollbar --- */
-  display: none;
-}
 #sidebar {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
 
 /* --- Hide sidebar scrollbar --- */
-  display: none;
-}
 #sidebar {
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -1053,10 +1053,6 @@ pre {
 
 /* --- Hide all scrollbars for clean UI --- */
 *::-webkit-scrollbar { display: none !important; width: 0 !important; height: 0 !important; }
-  display: none !important;
-  width: 0 !important;
-  height: 0 !important;
-}
 * {
   -ms-overflow-style: none !important;
   scrollbar-width: none !important;
@@ -1858,4 +1854,4 @@ pre,
     transition-duration:
       0.01ms !important;
   }
-     }
+}
