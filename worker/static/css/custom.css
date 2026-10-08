@@ -2008,8 +2008,8 @@ header.neu-header {
   box-shadow:
     inset 0 1px 0 rgba(255,255,255,.035),
     0 16px 45px rgba(0,0,0,.22) !important;
-  backdrop-filter: blur(18px) saturate(135%);
-  -webkit-backdrop-filter: blur(18px) saturate(135%);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 .card:hover,
@@ -2139,8 +2139,8 @@ textarea::placeholder { color: #64748b !important; }
 .alert-warning,
 .neu-alert-success,
 .neu-alert-error {
-  backdrop-filter: blur(14px) !important;
-  -webkit-backdrop-filter: blur(14px) !important;
+  backdrop-filter: blur(6px) !important;
+  -webkit-backdrop-filter: blur(6px) !important;
   border-radius: 14px !important;
   box-shadow: inset 0 1px 0 rgba(255,255,255,.035), 0 10px 30px rgba(0,0,0,.16) !important;
 }
@@ -2166,8 +2166,8 @@ nav.lg\:hidden.fixed.bottom-0 {
   border: 1px solid rgba(148,163,184,.13) !important;
   border-radius: 18px !important;
   box-shadow: 0 18px 50px rgba(0,0,0,.40), inset 0 1px 0 rgba(255,255,255,.04) !important;
-  backdrop-filter: blur(22px) saturate(150%) !important;
-  -webkit-backdrop-filter: blur(22px) saturate(150%) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
 }
 
 .neu-bottom-icon {
@@ -2187,8 +2187,8 @@ nav.lg\:hidden.fixed.bottom-0 {
   background: linear-gradient(145deg, rgba(18,23,38,.94), rgba(7,10,18,.96)) !important;
   border: 1px solid rgba(148,163,184,.14) !important;
   box-shadow: 0 30px 100px rgba(0,0,0,.52), inset 0 1px 0 rgba(255,255,255,.04) !important;
-  backdrop-filter: blur(26px) saturate(150%) !important;
-  -webkit-backdrop-filter: blur(26px) saturate(150%) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
 }
 
 /* Text polish without changing semantic colors */
@@ -2234,5 +2234,116 @@ h1, h2, h3 {
   *, *::before, *::after {
     transition-duration: .01ms !important;
     animation-duration: .01ms !important;
+  }
+}
+
+
+/* ========================================================================
+   PREMIUM SMOOTH PERFORMANCE PATCH
+   Optimized for Android / low-mid range devices.
+   Keeps the visual style while reducing scroll jank.
+   ======================================================================== */
+
+/* Never force the browser to repaint a fixed background while scrolling. */
+html,
+body {
+  background-attachment: scroll !important;
+}
+
+/* Avoid expensive continuous visual effects on scrolling surfaces. */
+.card,
+.neu-card,
+.neu-card-sm,
+.neu-box,
+.neu-box-sm,
+.neu-box-lg,
+[role="dialog"],
+.modal {
+  -webkit-backdrop-filter: blur(6px) !important;
+  backdrop-filter: blur(6px) !important;
+}
+
+/* Shadows are deliberately smaller than the original premium version. */
+.card,
+.neu-card,
+.neu-card-sm,
+.neu-box,
+.neu-box-sm,
+.neu-box-lg {
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.025),
+    0 8px 24px rgba(0,0,0,.18) !important;
+}
+
+/* Keep hover effects, but don't animate layout on mobile/touch screens. */
+@media (hover: hover) and (pointer: fine) {
+  .card:hover,
+  .neu-card:hover,
+  .neu-card-sm:hover {
+    transform: translateY(-1px);
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .card:hover,
+  .neu-card:hover,
+  .neu-card-sm:hover,
+  .btn:hover {
+    transform: none !important;
+    filter: none !important;
+  }
+
+  .btn::after {
+    display: none !important;
+  }
+}
+
+/* Remove expensive blur from the fixed mobile navigation on small screens. */
+@media (max-width: 768px) {
+  nav.lg\:hidden.fixed.bottom-0 {
+    -webkit-backdrop-filter: blur(5px) !important;
+    backdrop-filter: blur(5px) !important;
+    box-shadow:
+      0 10px 28px rgba(0,0,0,.28),
+      inset 0 1px 0 rgba(255,255,255,.03) !important;
+  }
+
+  #sidebar {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
+}
+
+/* Do not use CSS smooth scrolling for normal page movement. */
+html {
+  scroll-behavior: auto !important;
+}
+
+/* Let the browser use its native touch scrolling. */
+body {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Disable expensive decorative animations for devices that report
+   reduced motion or limited animation capability. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Mobile performance mode: eliminate decorative animated backgrounds
+   if they exist in the premium layer. */
+@media (max-width: 768px) {
+  .premium-ambient,
+  .ambient-orb,
+  .aurora-orb,
+  .bg-aurora,
+  .aurora {
+    animation: none !important;
+    transform: none !important;
   }
 }
