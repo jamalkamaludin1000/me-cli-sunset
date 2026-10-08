@@ -34,7 +34,7 @@
 
 <!-- GLOBAL LOADER -->
 <div id="page-loader" class="page-loader fixed inset-0 z-50 flex items-center justify-center pointer-events-none" style="opacity:0; transition: opacity 150ms ease;">
-  <div class="page-loader__backdrop absolute inset-0 bg-[#0f172a]/88 backdrop-blur-md"></div>
+  <div class="page-loader__backdrop absolute inset-0 bg-[#0f172a]/88" style="backdrop-filter:none !important;-webkit-backdrop-filter:none !important;"></div>
   <div class="page-loader__panel relative flex flex-col items-center gap-5 px-8 py-7 text-center max-w-sm mx-4">
     <div class="page-loader__spinner relative w-20 h-20">
       <div class="page-loader__ring page-loader__ring--outer absolute inset-0 rounded-full"></div>
@@ -59,7 +59,7 @@
 
 <!-- CONFIRM MODAL -->
 <div id="confirm-modal" class="confirm-modal fixed inset-0 z-[60] flex items-center justify-center pointer-events-none" style="opacity:0; transition: opacity 150ms ease;">
-  <div id="confirm-backdrop" class="absolute inset-0 bg-[#0f172a]/70 backdrop-blur-sm"></div>
+  <div id="confirm-backdrop" class="absolute inset-0 bg-[#0f172a]/70" style="backdrop-filter:none !important;-webkit-backdrop-filter:none !important;"></div>
   <div id="confirm-panel" class="confirm-modal__panel relative w-[calc(100%-2rem)] max-w-md transition-transform duration-150 ease-out">
     <div class="p-5 sm:p-6">
       <div class="flex items-start gap-3">
@@ -83,7 +83,7 @@
 </div>
 
 <!-- TOPBAR -->
-<header class="neu-box-sm backdrop-blur sticky top-0 z-30 mx-2 mt-2">
+<header class="neu-box-sm sticky top-0 z-30 mx-2 mt-2" style="backdrop-filter:none !important;-webkit-backdrop-filter:none !important;">
   <div class="flex items-center justify-between px-4 h-14 lg:pl-72">
     <div class="flex items-center gap-3">
       <button id="nav-toggle" class="neu-header-icon lg:hidden text-slate-300 hover:text-white" aria-label="menu">
@@ -152,7 +152,7 @@
 </main>
 
 <!-- BOTTOM NAV (mobile) -->
-<nav class="lg:hidden fixed bottom-0 inset-x-0 z-30 neu-box-sm mx-2 mb-2">
+<nav class="lg:hidden fixed bottom-0 inset-x-0 z-30 neu-box-sm mx-2 mb-2" style="backdrop-filter:none !important;-webkit-backdrop-filter:none !important;">
   <div class="grid grid-cols-5 text-xs">
     <a href="/packages/my" class="flex flex-col items-center py-3 {{#bottom_packages}}text-indigo-300{{/bottom_packages}}{{^bottom_packages}}text-slate-400{{/bottom_packages}}"><span class="neu-bottom-icon {{#bottom_packages}}active{{/bottom_packages}}"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg></span>Paket</a>
     <a href="/hot" class="flex flex-col items-center py-3 {{#bottom_hot}}text-indigo-300{{/bottom_hot}}{{^bottom_hot}}text-slate-400{{/bottom_hot}}"><span class="neu-bottom-icon {{#bottom_hot}}active{{/bottom_hot}}"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"></path></svg></span>Hot</a>
