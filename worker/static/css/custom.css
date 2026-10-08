@@ -2347,3 +2347,130 @@ body {
     transform: none !important;
   }
 }
+
+
+/* ========================================================================
+   WEBUI-XL PREMIUM SMOOTH V2 — FINAL PERFORMANCE OVERRIDE
+   Mobile-first: prioritize native scrolling and low GPU/compositor cost.
+   UI ONLY — no backend / JS changes.
+   ======================================================================== */
+
+/* Native page scrolling. Never pin the decorative background to the viewport. */
+html {
+  scroll-behavior: auto !important;
+  background-attachment: scroll !important;
+}
+
+body {
+  background-attachment: scroll !important;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Kill the large continuously animated blur layer. */
+body::before {
+  animation: none !important;
+  filter: none !important;
+  transform: none !important;
+  background: none !important;
+}
+
+/* Cards stay premium, but do not blur their contents on mobile/touch. */
+.neu-box,
+.neu-box-sm,
+.neu-box-lg,
+.neu-card,
+.neu-card-sm,
+.card,
+.theme-card,
+.card-link,
+.card-action,
+.neu-stat,
+.neu-pill,
+[role="dialog"],
+.modal,
+#confirm-panel,
+.page-loader__panel {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  box-shadow: 0 8px 24px rgba(0,0,0,.20), inset 0 1px 0 rgba(255,255,255,.025) !important;
+}
+
+/* Remove expensive hover movement/shadow changes on touch devices. */
+@media (hover: none), (pointer: coarse) {
+  .neu-card:hover,
+  .neu-card-sm:hover,
+  .card:hover,
+  .theme-card:hover,
+  .card-link:hover,
+  .card-action:hover,
+  .btn:hover,
+  .neu-btn:hover,
+  .neu-sidebar-link:hover {
+    transform: none !important;
+    filter: none !important;
+    box-shadow: inherit !important;
+  }
+
+  .neu-sidebar-link:hover {
+    background: transparent !important;
+    border-color: transparent !important;
+  }
+}
+
+/* Fixed elements are kept simple; no backdrop blur during page scrolling. */
+header,
+nav.lg\\:hidden.fixed.bottom-0,
+#sidebar {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* Mobile: reduce the amount of painting around the fixed navigation/sidebar. */
+@media (max-width: 768px) {
+  #sidebar {
+    box-shadow: 10px 0 28px rgba(0,0,0,.24) !important;
+  }
+
+  nav.lg\\:hidden.fixed.bottom-0 {
+    box-shadow: 0 -6px 24px rgba(0,0,0,.24), inset 0 1px 0 rgba(255,255,255,.025) !important;
+  }
+
+  .neu-bottom-icon.active {
+    filter: none !important;
+    transform: none !important;
+  }
+}
+
+/* Keep transitions only for interactive state changes, not layout/paint-heavy 'all'. */
+.card,
+.neu-card,
+.neu-card-sm,
+.theme-card,
+.card-link,
+.card-action,
+.neu-box,
+.neu-box-sm,
+.neu-box-lg {
+  transition: border-color 140ms ease, background-color 140ms ease !important;
+}
+
+/* Preserve dropdown animation because it is an explicit user interaction. */
+.neu-sidebar-children {
+  transition: max-height 180ms ease !important;
+}
+
+/* Disable decorative motion on small screens. */
+@media (max-width: 768px) {
+  *, *::before, *::after {
+    animation-duration: 0s !important;
+  }
+}
+
+/* Respect OS reduced-motion preference everywhere. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
